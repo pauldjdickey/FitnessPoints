@@ -98,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             isPlaying = false
             startButton.isEnabled = false
             pauseButton.isEnabled = false
-            appDelegate.userLeftRegion = false
+            //appDelegate.userLeftRegion = false
             // This code checks every second the timer is running and stops the timer if the user leaves the region. Only works when the user is actively using the app.
         }
     }
@@ -107,10 +107,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         if isPlaying == true {
             print("Timer is running and now updated")
         counter = counter + appDelegate.timeDifference
-        } else if isPlaying == false {
+        } else if isPlaying == false && appDelegate.userLeftRegion == true {
             counter = counter + appDelegate.timeDifferenceLeftRegion
             timeLabel.text = String(format: "%.1f", counter)
-            appDelegate.timeDifferenceLeftRegion = 0.0
+            //appDelegate.timeDifferenceLeftRegion = 0.0
+            appDelegate.userLeftRegion = false
             print("Time is stopped because user left area, and is now updated")
         }
         

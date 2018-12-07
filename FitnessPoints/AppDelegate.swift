@@ -131,8 +131,8 @@ extension AppDelegate: CLLocationManagerDelegate {
         if region is CLCircularRegion {
             // Do what you want if this information
             self.handleEvent(forRegion: region)
-            print("User has left the area")
             userLeftRegion = true
+            print("User has left the area and value has been set to true")
             leftRegionDateTime = Date()
             leftRegionTime = leftRegionDateTime.timeIntervalSinceReferenceDate
             print(leftRegionTime)
