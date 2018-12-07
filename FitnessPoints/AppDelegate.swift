@@ -9,14 +9,16 @@
 import UIKit
 import CoreLocation
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
    
+    var window: UIWindow?
+
     var locationManager: CLLocationManager!
     var timeDifference:Double = 0
     var timeDifferenceLeftRegion:Double = 0
-    var window: UIWindow?
     var leaveDateTime = Date()
     var arriveDateTime = Date()
     var leftRegionDateTime = Date()
@@ -30,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
         
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
