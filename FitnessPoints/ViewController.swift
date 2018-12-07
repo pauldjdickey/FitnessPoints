@@ -67,18 +67,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         pauseButton.isEnabled = false
         timer.invalidate()
         isPlaying = false
-        if counter < 2 {
-            let alert = UIAlertController(title: "Ooops!", message: "Make sure you workout longer to get points.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let alert2 = UIAlertController(title: "Congratulations!", message: "You earned \(Int(counter/2)) points", preferredStyle: UIAlertController.Style.alert)
-            alert2.addAction(UIAlertAction(title: "End Workout", style: UIAlertAction.Style.default, handler: nil))
+        if counter == 0.0 {
+        } else if counter < 2.0 {
+            let alert2 = UIAlertController(title: "Ooops!", message: "Make sure you workout longer to get points.", preferredStyle: UIAlertController.Style.alert)
+            alert2.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert2, animated: true, completion: nil)
+        } else {
+            let alert3 = UIAlertController(title: "Congratulations!", message: "You earned \(Int(counter/2)) points", preferredStyle: UIAlertController.Style.alert)
+            alert3.addAction(UIAlertAction(title: "End Workout", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert3, animated: true, completion: nil)
         }
-        let alert2 = UIAlertController(title: "Congratulations!", message: "You earned \(Int(counter/2)) points", preferredStyle: UIAlertController.Style.alert)
-        alert2.addAction(UIAlertAction(title: "End Workout", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert2, animated: true, completion: nil)
         print(counter)
         pointLabel.text = ("\(previousPoints + Int(counter/2))")
         previousPoints += Int(counter/2)
