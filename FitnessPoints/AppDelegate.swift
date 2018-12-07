@@ -1,22 +1,95 @@
 //
 //  AppDelegate.swift
-//  FitnessPoints
+//  Arcade App Base
 //
-//  Created by Paul Dickey on 12/6/18.
+//  Created by Paul Dickey on 12/3/18.
 //  Copyright © 2018 Paul Dickey. All rights reserved.
 //
 
 import UIKit
+import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+   
+    var locationManager: CLLocationManager!
+    var timeDifference:Double = 0
+    var timeDifferenceLeftRegion:Double = 0
     var window: UIWindow?
+    var leaveDateTime = Date()
+    var arriveDateTime = Date()
+    var leftRegionDateTime = Date()
+    var leaveTime:Double = 0
+    var arriveTime:Double = 0
+    var leftRegionTime:Double = 0
+    var notificationCenter: UNUserNotificationCenter!
+    var userLeftRegion:Bool = false
+    var userLeftApp:Bool = false
+
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager!.delegate = self
+        
+        // get the singleton object
+        self.notificationCenter = UNUserNotificationCenter.current()
+        
+        // register as it's delegate
+        notificationCenter.delegate = self
+        
+        // define what do you need permission to use
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        
+        // request permission
+        notificationCenter.requestAuthorization(options: options) { (granted, error) in
+            if !granted {
+                print("Permission not granted")
+            }
+        }
+        
+        if launchOptions?[UIApplication.LaunchOptionsKey.location] != nil {
+            print("I woke up thanks to geofencing")
+        }
+        
+        
         return true
+    }
+    // This sends the notification that the workout has ended
+    func handleEvent(forRegion region: CLRegion!) {
+        
+        // customize your notification content
+        let content = UNMutableNotificationContent()
+        content.title = "Your workout has ended"
+        content.body = "Click to see how many points you earned!"
+        content.sound = UNNotificationSound.default
+        
+        // when the notification will be triggered
+        let timeInSeconds: TimeInterval = 3
+        // the actual trigger object
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: timeInSeconds,
+            repeats: false
+        )
+        
+        // notification unique identifier, for this example, same as the region to avoid duplicate notifications
+        let identifier = region.identifier
+        
+        // the notification request object
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            content: content,
+            trigger: trigger
+        )
+        
+        // trying to add the notification request to notification center
+        notificationCenter.add(request, withCompletionHandler: { (error) in
+            if error != nil {
+                print("Error adding notification with identifier: \(identifier)")
+            }
+        })
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -27,10 +100,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        userLeftApp = true
+        leaveDateTime = Date()
+        leaveTime = leaveDateTime.timeIntervalSinceReferenceDate
+        print(leaveTime)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        userLeftApp = false
+        arriveDateTime = Date()
+        arriveTime = arriveDateTime.timeIntervalSinceReferenceDate
+        print(arriveTime)
+        timeDifference = arriveTime - leaveTime
+        timeDifferenceLeftRegion = leftRegionTime - leaveTime
+        print(timeDifference)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -40,7 +124,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-
+extension AppDelegate: CLLocationManagerDelegate {
+    // called when user Exits a monitored region
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            // Do what you want if this information
+            self.handleEvent(forRegion: region)
+            print("User has left the area")
+            userLeftRegion = true
+            leftRegionDateTime = Date()
+            leftRegionTime = leftRegionDateTime.timeIntervalSinceReferenceDate
+            print(leftRegionTime)
+        }
+        // This will be activated once the user has moved and left the geofence location. It will then handle the event to send a notification
+    }
+    
+    // called when user Enters a monitored region
+    //    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    //        if region is CLCircularRegion {
+    //            // Do what you want if this information
+    //            self.handleEvent(forRegion: region)
+    //        }
+    //    }
+}
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // when app is open and in foregroud
+        completionHandler(.alert)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // get the notification identifier to respond accordingly
+        let identifier = response.notification.request.identifier
+        
+        // do what you need to do
+        print(identifier)
+        // ...
+    }
+    // This is used to send the notication that things have ended
+}

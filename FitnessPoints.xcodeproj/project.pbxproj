@@ -14,6 +14,8 @@
 		2D60070D21B9EE4B00B892BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D60070B21B9EE4B00B892BB /* LaunchScreen.storyboard */; };
 		2D60071821B9EE4B00B892BB /* FitnessPointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60071721B9EE4B00B892BB /* FitnessPointsTests.swift */; };
 		2D60072321B9EE4B00B892BB /* FitnessPointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60072221B9EE4B00B892BB /* FitnessPointsUITests.swift */; };
+		2D60073121B9EEA700B892BB /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60073021B9EEA700B892BB /* LocationsModel.swift */; };
+		2D60073321B9EEB600B892BB /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60073221B9EEB600B892BB /* DistanceCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		2D60071E21B9EE4B00B892BB /* FitnessPointsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitnessPointsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D60072221B9EE4B00B892BB /* FitnessPointsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessPointsUITests.swift; sourceTree = "<group>"; };
 		2D60072421B9EE4B00B892BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D60073021B9EEA700B892BB /* LocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
+		2D60073221B9EEB600B892BB /* DistanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				2D60070221B9EE4A00B892BB /* AppDelegate.swift */,
 				2D60070421B9EE4A00B892BB /* ViewController.swift */,
+				2D60073021B9EEA700B892BB /* LocationsModel.swift */,
+				2D60073221B9EEB600B892BB /* DistanceCalculator.swift */,
 				2D60070621B9EE4A00B892BB /* Main.storyboard */,
 				2D60070921B9EE4B00B892BB /* Assets.xcassets */,
 				2D60070B21B9EE4B00B892BB /* LaunchScreen.storyboard */,
@@ -193,6 +199,11 @@
 				TargetAttributes = {
 					2D6006FE21B9EE4A00B892BB = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2D60071221B9EE4B00B892BB = {
 						CreatedOnToolsVersion = 10.1;
@@ -256,8 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D60073321B9EEB600B892BB /* DistanceCalculator.swift in Sources */,
 				2D60070521B9EE4A00B892BB /* ViewController.swift in Sources */,
 				2D60070321B9EE4A00B892BB /* AppDelegate.swift in Sources */,
+				2D60073121B9EEA700B892BB /* LocationsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
