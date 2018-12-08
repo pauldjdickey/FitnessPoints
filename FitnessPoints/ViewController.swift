@@ -45,15 +45,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        //This is running no matter what... So, need to stop it...
-        pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
-            let snapshotValue = snapshot.value as! Int
-            let points = snapshotValue
-            print("PRINTED POINTS UPON LOAD: \(points)")
-            self.pointLabel.text = ("\(points)")
-            self.previousPoints = Int(points)
-        }
-        //PRINTED POINTS UPON LOADhttps://fitness-points-a85bb.firebaseio.com/Points/Points/0wZDSglAcCYx2SkNEb9jM7pSYxM2
+        //This is running no matter what... So, need to stop it for new users somehow...
+        
+        pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
+                    let snapshotValue = snapshot.value as! Int
+                    let points = snapshotValue
+                    print("PRINTED POINTS UPON LOAD: \(points)")
+                    self.pointLabel.text = ("\(points)")
+                    self.previousPoints = Int(points)
+                }
+            } else {
+            print("No user data")
+            }
+    })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
