@@ -44,6 +44,9 @@ class LogInViewController: UIViewController {
                 SVProgressHUD.dismiss()
                 
                 self.performSegue(withIdentifier: "goToApp", sender: self)
+                let backItem = UIBarButtonItem()
+                backItem.title = "Logout"
+                self.navigationItem.backBarButtonItem = backItem
                 
             }
             

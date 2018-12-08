@@ -20,6 +20,7 @@
 		2DEBA5BA21BB0EE500C9B96C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEBA5B921BB0EE500C9B96C /* WelcomeViewController.swift */; };
 		2DEBA5BC21BB11AF00C9B96C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */; };
 		2DEBA5BE21BB11BD00C9B96C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEBA5BD21BB11BD00C9B96C /* RegisterViewController.swift */; };
+		2DFAE60721BB312B00EB7BA4 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFAE60621BB312B00EB7BA4 /* Points.swift */; };
 		6C7DAFA13C555D5087E64226 /* Pods_FitnessPointsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D96A3FE8ED436E7EF31333D /* Pods_FitnessPointsTests.framework */; };
 		6DBA498A27DC1AA7E1CC639A /* Pods_FitnessPointsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E050BFBF8324F42C8AA0BF26 /* Pods_FitnessPointsUITests.framework */; };
 		FBE516471AD0F0949DF10B9E /* Pods_FitnessPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B857074467AC12ED50F53CD8 /* Pods_FitnessPoints.framework */; };
@@ -66,6 +67,7 @@
 		2DEBA5B921BB0EE500C9B96C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		2DEBA5BD21BB11BD00C9B96C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		2DFAE60621BB312B00EB7BA4 /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 		3D96A3FE8ED436E7EF31333D /* Pods_FitnessPointsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitnessPointsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2D6812D60F004A185DDB6 /* Pods-FitnessPointsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPointsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPointsTests/Pods-FitnessPointsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B857074467AC12ED50F53CD8 /* Pods_FitnessPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitnessPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 				2D60073221B9EEB600B892BB /* DistanceCalculator.swift */,
 				2D60070621B9EE4A00B892BB /* Main.storyboard */,
 				2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */,
+				2DFAE60621BB312B00EB7BA4 /* Points.swift */,
 				2DEBA5BD21BB11BD00C9B96C /* RegisterViewController.swift */,
 				2D60070921B9EE4B00B892BB /* Assets.xcassets */,
 				2D60070B21B9EE4B00B892BB /* LaunchScreen.storyboard */,
@@ -427,6 +430,7 @@
 				2DEBA5BA21BB0EE500C9B96C /* WelcomeViewController.swift in Sources */,
 				2DEBA5BE21BB11BD00C9B96C /* RegisterViewController.swift in Sources */,
 				2DEBA5BC21BB11AF00C9B96C /* LogInViewController.swift in Sources */,
+				2DFAE60721BB312B00EB7BA4 /* Points.swift in Sources */,
 				2D60070521B9EE4A00B892BB /* ViewController.swift in Sources */,
 				2D60070321B9EE4A00B892BB /* AppDelegate.swift in Sources */,
 				2D60073121B9EEA700B892BB /* LocationsModel.swift in Sources */,

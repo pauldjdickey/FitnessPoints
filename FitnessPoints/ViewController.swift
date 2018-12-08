@@ -8,16 +8,19 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIApplicationDelegate {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let locationsModel = LocationsModel()
+    let pointsDB = Database.database().reference().child("Points")
     let locationManager = CLLocationManager()
     let currentDateTime = Date()
     var geofenceRegion = CLCircularRegion()
     var previousPoints:Int = 0
+    var currentPoints:Int = 0
     var counter = 0.0
     var timer = Timer()
     var isPlaying = false
@@ -38,6 +41,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         endButton.isHidden = true
         timeLabel.isHidden = true
         NotificationCenter.default.addObserver(self, selector:#selector(upDateTimeDifference), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        //This is running no matter what... So, need to stop it...
+        pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
+            let snapshotValue = snapshot.value as! Int
+            let points = snapshotValue
+            print("PRINTED POINTS UPON LOAD: \(points)")
+            self.pointLabel.text = ("\(points)")
+            self.previousPoints = Int(points)
+        }
+        //PRINTED POINTS UPON LOADhttps://fitness-points-a85bb.firebaseio.com/Points/Points/0wZDSglAcCYx2SkNEb9jM7pSYxM2
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     @IBAction func checkInButton(_ sender: UIButton) {
         locationManager.delegate = self
@@ -78,7 +99,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             self.present(alert3, animated: true, completion: nil)
         }
         print(counter)
-        pointLabel.text = ("\(previousPoints + Int(counter/2))")
+        //pointLabel.text = ("\(previousPoints + Int(counter/2))")
+        currentPoints = previousPoints + Int(counter/2)
+        print("YOUR CURRENT POINTS ARE: \(currentPoints)")
+        let points = ["points": currentPoints]
+        pointsDB.child(Auth.auth().currentUser!.uid).setValue(points) {
+            (error, reference) in
+            
+            if error != nil {
+                print(error!)
+            }
+            else {
+                print("Points saved successfully!")
+            }
+        }
+        pointLabel.text = ("\(currentPoints)")
         previousPoints += Int(counter/2)
         counter = 0.0
         timeLabel.text = String(counter)
