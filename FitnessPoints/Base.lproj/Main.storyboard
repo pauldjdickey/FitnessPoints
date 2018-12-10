@@ -232,7 +232,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Fitness Points Home" id="LM3-e5-NuD"/>
                     <connections>
-                        <segue destination="bh1-Nq-JdA" kind="show" identifier="goToApp" id="5EL-7k-rtc"/>
+                        <segue destination="bh1-Nq-JdA" kind="show" identifier="goToApp" animates="NO" id="5EL-7k-rtc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4j-dQ-eqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
