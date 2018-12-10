@@ -62,10 +62,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     })
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+//    }
     @IBAction func checkInButton(_ sender: UIButton) {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

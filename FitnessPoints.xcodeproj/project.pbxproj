@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D43AF0021BF28E3006D81DF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */; };
 		2D60070321B9EE4A00B892BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60070221B9EE4A00B892BB /* AppDelegate.swift */; };
 		2D60070521B9EE4A00B892BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60070421B9EE4A00B892BB /* ViewController.swift */; };
 		2D60070821B9EE4A00B892BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D60070621B9EE4A00B892BB /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		24A2909C997AE6BB2BD28EA8 /* Pods-FitnessPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		260BB852C9D18503ECFA2EC9 /* Pods-FitnessPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.release.xcconfig"; sourceTree = "<group>"; };
 		279F18E9B1C56C3EB6CF1234 /* Pods-FitnessPointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPointsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPointsTests/Pods-FitnessPointsTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2D6006FF21B9EE4A00B892BB /* FitnessPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D60070221B9EE4A00B892BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D60070421B9EE4A00B892BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,12 +133,13 @@
 				2D60070221B9EE4A00B892BB /* AppDelegate.swift */,
 				2D60070421B9EE4A00B892BB /* ViewController.swift */,
 				2DEBA5B921BB0EE500C9B96C /* WelcomeViewController.swift */,
+				2DEBA5BD21BB11BD00C9B96C /* RegisterViewController.swift */,
+				2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */,
+				2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */,
+				2D60070621B9EE4A00B892BB /* Main.storyboard */,
 				2D60073021B9EEA700B892BB /* LocationsModel.swift */,
 				2D60073221B9EEB600B892BB /* DistanceCalculator.swift */,
-				2D60070621B9EE4A00B892BB /* Main.storyboard */,
-				2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */,
 				2DFAE60621BB312B00EB7BA4 /* Points.swift */,
-				2DEBA5BD21BB11BD00C9B96C /* RegisterViewController.swift */,
 				2D60070921B9EE4B00B892BB /* Assets.xcassets */,
 				2D60070B21B9EE4B00B892BB /* LaunchScreen.storyboard */,
 				2D60070E21B9EE4B00B892BB /* Info.plist */,
@@ -434,6 +437,7 @@
 				2D60070521B9EE4A00B892BB /* ViewController.swift in Sources */,
 				2D60070321B9EE4A00B892BB /* AppDelegate.swift in Sources */,
 				2D60073121B9EEA700B892BB /* LocationsModel.swift in Sources */,
+				2D43AF0021BF28E3006D81DF /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

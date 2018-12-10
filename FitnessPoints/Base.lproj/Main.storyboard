@@ -10,29 +10,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Redeem-->
+        <!--Settings-->
         <scene sceneID="4eT-YG-psl">
             <objects>
-                <viewController id="A3R-I3-e9l" sceneMemberID="viewController">
+                <viewController id="A3R-I3-e9l" customClass="SettingsViewController" customModule="FitnessPoints" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vUr-lh-Kt6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJo-yf-Dfo">
-                                <rect key="frame" x="155.66666666666666" y="357.66666666666669" width="102.99999999999997" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-xm-VAy">
+                                <rect key="frame" x="179.66666666666666" y="353" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutPressed:" destination="A3R-I3-e9l" eventType="touchUpInside" id="DhR-pn-P8n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WJo-yf-Dfo" firstAttribute="centerY" secondItem="vUr-lh-Kt6" secondAttribute="centerY" id="CeU-aW-Cxg"/>
-                            <constraint firstItem="WJo-yf-Dfo" firstAttribute="centerX" secondItem="vUr-lh-Kt6" secondAttribute="centerX" id="iWJ-Ip-2Xg"/>
+                            <constraint firstItem="UUV-xm-VAy" firstAttribute="centerY" secondItem="vUr-lh-Kt6" secondAttribute="centerY" id="JqZ-Ib-HRK"/>
+                            <constraint firstItem="UUV-xm-VAy" firstAttribute="centerX" secondItem="vUr-lh-Kt6" secondAttribute="centerX" id="bqT-XA-UfC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rpC-4n-aio"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Redeem" id="P4K-6B-j5Y"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="P4K-6B-j5Y"/>
                     <navigationItem key="navigationItem" id="eZN-SP-c5T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qth-A2-swg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,7 +198,7 @@
             </objects>
             <point key="canvasLocation" x="-5229" y="-690"/>
         </scene>
-        <!--Welcome-->
+        <!--Fitness Points Home-->
         <scene sceneID="LBy-rT-K3n">
             <objects>
                 <viewController id="vdS-Z5-1Ed" customClass="WelcomeViewController" customModule="FitnessPoints" customModuleProvider="target" sceneMemberID="viewController">
@@ -229,7 +230,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y6V-Kb-hDo"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="LM3-e5-NuD"/>
+                    <navigationItem key="navigationItem" title="Fitness Points Home" id="LM3-e5-NuD"/>
                     <connections>
                         <segue destination="bh1-Nq-JdA" kind="show" identifier="goToApp" id="5EL-7k-rtc"/>
                     </connections>
@@ -250,7 +251,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="SfW-3O-rvP"/>
-                        <segue destination="A3R-I3-e9l" kind="relationship" relationship="viewControllers" id="noa-2D-GSQ"/>
+                        <segue destination="A3R-I3-e9l" kind="relationship" relationship="viewControllers" id="yIx-Uw-1W8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhP-8e-k0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,6 +349,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dbH-3N-pE3"/>
+        <segue reference="5EL-7k-rtc"/>
     </inferredMetricsTieBreakers>
 </document>

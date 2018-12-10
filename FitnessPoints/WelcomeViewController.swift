@@ -17,11 +17,15 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         //If there is a logged in user, by pass this screen and go straight to ChatViewController
-        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "goToApp", sender: self)
         }
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
