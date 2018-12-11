@@ -211,7 +211,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 endButton.isHidden = false
                 timeLabel.isHidden = false
                 checkInLabel.isHidden = true
-                
+                if(isPlaying) {
+                    return
+                }
+                startButton.isEnabled = false
+                pauseButton.isEnabled = true
+                timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+                isPlaying = true
             } else {
                 print("Gotta go to a gym first")
                 let alert = UIAlertController(title: "Can't Start Workout", message: "You must be at a valid gym to check in and begin your workout.", preferredStyle: UIAlertController.Style.alert)
