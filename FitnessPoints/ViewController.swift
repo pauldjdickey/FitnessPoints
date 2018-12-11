@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import SVProgressHUD
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIApplicationDelegate {
@@ -29,7 +30,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var checkInLabel: UIButton!
-    @IBOutlet weak var pointLabel: UILabel!    
+    @IBOutlet weak var pointLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        //This is running no matter what... So, need to stop it for new users somehow...
+        //This loads data from firebase upon load
+        //Need to make it if we cant connect to the internet, but are logged in, we access saved data on our plist
         
         pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
@@ -57,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                     self.previousPoints = Int(points)
                 }
             } else {
-            print("No user data")
+            print("No user data to load")
             }
     })
     }
@@ -109,6 +112,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         currentPoints = previousPoints + Int(counter/2)
         print("YOUR CURRENT POINTS ARE: \(currentPoints)")
         let points = ["points": currentPoints]
+        
+        var pointsSaved = Int(counter/2)
+        //This will be where we write to our plist
+        print ("Points Save Test = \(pointsSaved)")
         pointsDB.child(Auth.auth().currentUser!.uid).setValue(points) {
             (error, reference) in
             
@@ -117,8 +124,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             }
             else {
                 print("Points saved successfully!")
+                pointsSaved = 0
+                // This will be where we override our plist IF successfully saved
+                print("Points Save Test w/ successful save = \(pointsSaved)")
             }
         }
+        
         pointLabel.text = ("\(currentPoints)")
         previousPoints += Int(counter/2)
         counter = 0.0
