@@ -77,6 +77,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         counter = 0.0
+        timeLabel.text = "00:00:00"
     }
     @IBAction func startTimer(_ sender: Any) {
         if(isPlaying) {
@@ -143,7 +144,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     }
     @objc func UpdateTimer() {
         counter = counter + 0.1
-        timeLabel.text = String(format: "%.1f", counter)
+        let counterHour = counter/3600
+        let counterMinute = counter/60
+        let counterSecond = counter.truncatingRemainder(dividingBy: 60)
+        timeLabel.text = ("\(String(format: "%02d", Int(counterHour))):\(String(format: "%02d", Int(counterMinute))):\(String(format: "%02d", Int(counterSecond)))")
         if appDelegate.userLeftRegion == true {
             timer.invalidate()
             isPlaying = false
@@ -160,7 +164,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         counter = counter + appDelegate.timeDifference
         } else if isPlaying == false && appDelegate.userLeftRegion == true {
             counter = counter + appDelegate.timeDifferenceLeftRegion
-            timeLabel.text = String(format: "%.1f", counter)
+            let counterHour = counter/3600
+            let counterMinute = counter/60
+            let counterSecond = counter.truncatingRemainder(dividingBy: 60)
+            timeLabel.text = ("\(String(format: "%02d", Int(counterHour))):\(String(format: "%02d", Int(counterMinute))):\(String(format: "%02d", Int(counterSecond)))")
             //appDelegate.timeDifferenceLeftRegion = 0.0
             appDelegate.userLeftRegion = false
             print("Time is stopped because user left area, and is now updated")
