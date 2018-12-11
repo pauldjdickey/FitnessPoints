@@ -19,6 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     let pointsDB = Database.database().reference().child("Points")
     let locationManager = CLLocationManager()
     let currentDateTime = Date()
+    let defaults = UserDefaults.standard
     var geofenceRegion = CLCircularRegion()
     var previousPoints:Int = 0
     var currentPoints:Int = 0
@@ -49,7 +50,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         navigationController?.setNavigationBarHidden(true, animated: true)
         //This loads data from firebase upon load
         //Need to make it if we cant connect to the internet, but are logged in, we access saved data on our plist
-        
         pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
@@ -61,9 +61,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 }
             } else {
             print("No user data to load")
+            self.pointLabel.text = "0"
             }
     })
     }
+            
     
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(true)
@@ -112,10 +114,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         currentPoints = previousPoints + Int(counter/2)
         print("YOUR CURRENT POINTS ARE: \(currentPoints)")
         let points = ["points": currentPoints]
-        
-        var pointsSaved = Int(counter/2)
-        //This will be where we write to our plist
-        print ("Points Save Test = \(pointsSaved)")
+        //var pointsSaved = Int(counter/2)
         pointsDB.child(Auth.auth().currentUser!.uid).setValue(points) {
             (error, reference) in
             
@@ -124,9 +123,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             }
             else {
                 print("Points saved successfully!")
-                pointsSaved = 0
+                //pointsSaved = 0
                 // This will be where we override our plist IF successfully saved
-                print("Points Save Test w/ successful save = \(pointsSaved)")
+                // CLear PLIST points that were saved since things were successful.
             }
         }
         

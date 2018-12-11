@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D0B7AF021BF6979007DA5D2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B7AEE21BF6979007DA5D2 /* DataModel.xcdatamodeld */; };
 		2D43AF0021BF28E3006D81DF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */; };
 		2D60070321B9EE4A00B892BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60070221B9EE4A00B892BB /* AppDelegate.swift */; };
 		2D60070521B9EE4A00B892BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60070421B9EE4A00B892BB /* ViewController.swift */; };
@@ -50,7 +49,6 @@
 		24A2909C997AE6BB2BD28EA8 /* Pods-FitnessPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		260BB852C9D18503ECFA2EC9 /* Pods-FitnessPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.release.xcconfig"; sourceTree = "<group>"; };
 		279F18E9B1C56C3EB6CF1234 /* Pods-FitnessPointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPointsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPointsTests/Pods-FitnessPointsTests.release.xcconfig"; sourceTree = "<group>"; };
-		2D0B7AEF21BF6979007DA5D2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2D6006FF21B9EE4A00B892BB /* FitnessPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D60070221B9EE4A00B892BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				2D60073021B9EEA700B892BB /* LocationsModel.swift */,
 				2D60073221B9EEB600B892BB /* DistanceCalculator.swift */,
 				2DFAE60621BB312B00EB7BA4 /* Points.swift */,
-				2D0B7AEE21BF6979007DA5D2 /* DataModel.xcdatamodeld */,
 			);
 			path = "Data Models and Utilities";
 			sourceTree = "<group>";
@@ -457,7 +454,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D60073321B9EEB600B892BB /* DistanceCalculator.swift in Sources */,
-				2D0B7AF021BF6979007DA5D2 /* DataModel.xcdatamodeld in Sources */,
 				2DEBA5BA21BB0EE500C9B96C /* WelcomeViewController.swift in Sources */,
 				2DEBA5BE21BB11BD00C9B96C /* RegisterViewController.swift in Sources */,
 				2DEBA5BC21BB11AF00C9B96C /* LogInViewController.swift in Sources */,
@@ -800,19 +796,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2D0B7AEE21BF6979007DA5D2 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2D0B7AEF21BF6979007DA5D2 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 2D0B7AEF21BF6979007DA5D2 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2D6006F721B9EE4A00B892BB /* Project object */;
 }
