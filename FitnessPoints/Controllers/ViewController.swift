@@ -20,6 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     let locationManager = CLLocationManager()
     let currentDateTime = Date()
     let defaults = UserDefaults.standard
+    let formatter = NumberFormatter()
     var geofenceRegion = CLCircularRegion()
     var previousPoints:Int = 0
     var currentPoints:Int = 0
@@ -32,6 +33,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var checkInLabel: UIButton!
     @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var currentWorkoutPointLabel: UILabel!
+    @IBOutlet weak var pointsEarnedThisWorkoutLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -43,6 +47,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         pauseButton.isHidden = true
         endButton.isHidden = true
         timeLabel.isHidden = true
+        currentWorkoutPointLabel.isHidden = true
+        pointsEarnedThisWorkoutLabel.isHidden = true
+        progressBar.setProgress(0.0, animated: false)
+        progressBar.isHidden = true
         NotificationCenter.default.addObserver(self, selector:#selector(upDateTimeDifference), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +84,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        progressBar.setProgress(0.0, animated: false)
         counter = 0.0
         timeLabel.text = "00:00:00"
+        progressBar.isHidden = false
+        currentWorkoutPointLabel.isHidden = false
+        pointsEarnedThisWorkoutLabel.isHidden = false
+        print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT CHECK IN BUTTON PRESS")
+
     }
     @IBAction func startTimer(_ sender: Any) {
         if(isPlaying) {
@@ -87,6 +101,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         pauseButton.isEnabled = true
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
         isPlaying = true
+        print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT STARTTIMER FUNCTION")
     }
     @IBAction func pauseTimer(_ sender: Any) {
         startButton.isEnabled = true
@@ -98,21 +113,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     @IBAction func resetTimer(_ sender: Any) {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
+        progressBar.isHidden = true
         timer.invalidate()
         isPlaying = false
         if counter == 0.0 {
-        } else if counter < 2.0 {
-            let alert2 = UIAlertController(title: "Ooops!", message: "Make sure you workout longer to get points.", preferredStyle: UIAlertController.Style.alert)
+        } else if counter < 59.9 {
+            let alert2 = UIAlertController(title: "Ooops!", message: "Make sure you workout atleast 1 minute to receive points", preferredStyle: UIAlertController.Style.alert)
             alert2.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert2, animated: true, completion: nil)
         } else {
-            let alert3 = UIAlertController(title: "Congratulations!", message: "You earned \(Int(counter/2)) points", preferredStyle: UIAlertController.Style.alert)
+            let alert3 = UIAlertController(title: "Congratulations!", message: "You earned \(Int(counter/60)) points", preferredStyle: UIAlertController.Style.alert)
             alert3.addAction(UIAlertAction(title: "End Workout", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert3, animated: true, completion: nil)
         }
         print(counter)
+        currentWorkoutPointLabel.isHidden = true
+        pointsEarnedThisWorkoutLabel.isHidden = true
         //pointLabel.text = ("\(previousPoints + Int(counter/2))")
-        currentPoints = previousPoints + Int(counter/2)
+        currentPoints = previousPoints + Int(counter/60)
         print("YOUR CURRENT POINTS ARE: \(currentPoints)")
         let points = ["points": currentPoints]
         //var pointsSaved = Int(counter/2)
@@ -129,10 +147,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 // CLear PLIST points that were saved since things were successful.
             }
         }
-        
         pointLabel.text = ("\(currentPoints)")
-        previousPoints += Int(counter/2)
+        previousPoints += Int(counter/60)
         counter = 0.0
+        progressBar.setProgress(0.0, animated: false)
         timeLabel.text = String(counter)
         startButton.isHidden = true
         pauseButton.isHidden = true
@@ -143,11 +161,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         print("User has ended the workout, and the monitor for geofence has stopped")
     }
     @objc func UpdateTimer() {
+        print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT UPDATETIMERSTART")
         counter = counter + 0.1
         let counterHour = counter/3600
         let counterMinute = counter/60
         let counterSecond = counter.truncatingRemainder(dividingBy: 60)
+        
         timeLabel.text = ("\(String(format: "%02d", Int(counterHour))):\(String(format: "%02d", Int(counterMinute))):\(String(format: "%02d", Int(counterSecond)))")
+        currentWorkoutPointLabel.text = ("\(Int(counter/60))")
+        formatter.minimumFractionDigits = 2
+        formatter.maximumIntegerDigits = 0
+        let progressBarFormatted = formatter.string(from: NSNumber(value: counterMinute))!
+        print(progressBarFormatted)
+        if progressBar.progress == 1.0 {
+            progressBar.progress = 0.0
+        } else {
+            progressBar.progress = Float(progressBarFormatted)!+0.01
+        }
+        
         if appDelegate.userLeftRegion == true {
             timer.invalidate()
             isPlaying = false
