@@ -12,6 +12,7 @@ import Firebase
 class RedeemViewController: UITableViewController {
     
     var locations = [String]()
+    var walletOffers = [String]()
     var pointsToRedeem = 250
     let pointsDB = Database.database().reference().child("Users")
     
@@ -43,7 +44,7 @@ class RedeemViewController: UITableViewController {
             print("Time to redeem!")
             self.pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
-                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
+                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observeSingleEvent(of: .value, with: { (snapshot) in
                         let snapshotValue = snapshot.value as! Int
                         let points = snapshotValue
                         print(points)
@@ -62,18 +63,21 @@ class RedeemViewController: UITableViewController {
                                 }
                                 else {
                                     print("Points saved successfully!")
-                                    //pointsSaved = 0
-                                    // This will be where we override our plist IF successfully saved
-                                    // CLear PLIST points that were saved since things were successful.
+                                    //THIS IS WHERE WE NEED TO SAVE THE OFFER TO OUR FIREBASE WALLET
+                                    self.walletOffers.append(self.locations[indexPath.row])
+                                    for element in self.walletOffers {
+                                        print("Offers in wallet are: \(element)", terminator: " ")
+                                    }
                                 }
                             }
+                        
                         } else {
                             let notEnoughToRedeemAlert = UIAlertController(title: "Sorry", message: "You don't have enough points for this offer. Complete more workouts to get more points!", preferredStyle: UIAlertController.Style.alert)
                             notEnoughToRedeemAlert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
                             self.present(notEnoughToRedeemAlert, animated: true, completion: nil)
                         }
                     }
-                } else {
+                )} else {
                     print("No user data to load")
                     let noPointsToRedeemAlert = UIAlertController(title: "Sorry", message: "You don't have any points. Complete a workout to get your first points.", preferredStyle: UIAlertController.Style.alert)
                     noPointsToRedeemAlert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
