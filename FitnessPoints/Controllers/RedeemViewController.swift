@@ -90,7 +90,6 @@ class RedeemViewController: UITableViewController {
         }))
         self.present(redeemAlert, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
     
     
