@@ -87,9 +87,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         progressBar.setProgress(0.0, animated: false)
         counter = 0.0
         timeLabel.text = "00:00:00"
-        progressBar.isHidden = false
-        currentWorkoutPointLabel.isHidden = false
-        pointsEarnedThisWorkoutLabel.isHidden = false
         print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT CHECK IN BUTTON PRESS")
 
     }
@@ -99,6 +96,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         }
         startButton.isEnabled = false
         pauseButton.isEnabled = true
+        currentWorkoutPointLabel.text = "0"
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
         isPlaying = true
         print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT STARTTIMER FUNCTION")
@@ -150,6 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         pointLabel.text = ("\(currentPoints)")
         previousPoints += Int(counter/60)
         counter = 0.0
+        currentWorkoutPointLabel.text = "0"
         progressBar.setProgress(0.0, animated: false)
         timeLabel.text = String(counter)
         startButton.isHidden = true
@@ -248,6 +247,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 endButton.isHidden = false
                 timeLabel.isHidden = false
                 checkInLabel.isHidden = true
+                progressBar.isHidden = false
+                currentWorkoutPointLabel.isHidden = false
+                pointsEarnedThisWorkoutLabel.isHidden = false
                 if(isPlaying) {
                     return
                 }
