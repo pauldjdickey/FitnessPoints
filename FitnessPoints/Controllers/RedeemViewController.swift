@@ -89,6 +89,8 @@ class RedeemViewController: UITableViewController {
             print("Okay, cancel redeem.")
         }))
         self.present(redeemAlert, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+
     }
     
     

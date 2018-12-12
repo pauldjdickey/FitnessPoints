@@ -20,7 +20,7 @@ class WalletViewController: UITableViewController {
     
     //This is what will go into the cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "walletOfferCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "walletCell", for: indexPath)
         
         return cell
     }

@@ -25,10 +25,11 @@
                                     <action selector="logOutPressed:" destination="A3R-I3-e9l" eventType="touchUpInside" id="DhR-pn-P8n"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Nd-zBo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Nd-zBo">
                                 <rect key="frame" x="192" y="527" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="..."/>
+                                <state key="normal" title="...">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="zH0-bZ-Reh" kind="show" identifier="goToRedeem" id="RUb-sQ-ukY"/>
                                 </connections>
@@ -37,7 +38,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UUV-xm-VAy" firstAttribute="centerY" secondItem="vUr-lh-Kt6" secondAttribute="centerY" id="JqZ-Ib-HRK"/>
+                            <constraint firstItem="IkW-Nd-zBo" firstAttribute="centerX" secondItem="vUr-lh-Kt6" secondAttribute="centerX" id="XLj-iF-vep"/>
                             <constraint firstItem="UUV-xm-VAy" firstAttribute="centerX" secondItem="vUr-lh-Kt6" secondAttribute="centerX" id="bqT-XA-UfC"/>
+                            <constraint firstItem="IkW-Nd-zBo" firstAttribute="top" secondItem="UUV-xm-VAy" secondAttribute="bottom" constant="144" id="iyz-lE-ZAG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rpC-4n-aio"/>
                     </view>
