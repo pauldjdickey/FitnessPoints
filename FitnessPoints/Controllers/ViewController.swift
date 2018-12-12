@@ -16,7 +16,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let locationsModel = LocationsModel()
-    let pointsDB = Database.database().reference().child("Points")
+    let pointsDB = Database.database().reference().child("Users")
+    let offersDB = Database.database().reference().child("Offers")
     let locationManager = CLLocationManager()
     let currentDateTime = Date()
     let defaults = UserDefaults.standard

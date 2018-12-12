@@ -25,6 +25,14 @@
                                     <action selector="logOutPressed:" destination="A3R-I3-e9l" eventType="touchUpInside" id="DhR-pn-P8n"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Nd-zBo">
+                                <rect key="frame" x="192" y="527" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="..."/>
+                                <connections>
+                                    <segue destination="zH0-bZ-Reh" kind="show" identifier="goToRedeem" id="RUb-sQ-ukY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -39,6 +47,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qth-A2-swg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="430" y="-358"/>
+        </scene>
+        <!--Redeem Your Points-->
+        <scene sceneID="DiN-Xm-vem">
+            <objects>
+                <tableViewController id="zH0-bZ-Reh" customClass="RedeemViewController" customModule="FitnessPoints" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fw5-pz-06m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="redeemOfferCell" id="zd7-cu-9dM">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zd7-cu-9dM" id="uQT-w3-Rcj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zH0-bZ-Reh" id="yHx-pi-9hL"/>
+                            <outlet property="delegate" destination="zH0-bZ-Reh" id="j6f-yi-qvd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Redeem Your Points" id="Pb7-ED-3oM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="baT-EO-sj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1522" y="-359"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="Qbi-10-llc">
