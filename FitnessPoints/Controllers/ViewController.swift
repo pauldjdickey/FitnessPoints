@@ -61,8 +61,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         //Need to make it if we cant connect to the internet, but are logged in, we access saved data on our plist
         pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
-                self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (snapshot) in
-                    let snapshotValue = snapshot.value as! Int
+                self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (loadsnapshot) in
+                    let snapshotValue = loadsnapshot.value as! Int
                     let points = snapshotValue
                     print("PRINTED POINTS UPON LOAD: \(points)")
                     self.pointLabel.text = ("\(points)")
