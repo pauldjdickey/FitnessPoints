@@ -13,7 +13,7 @@ import SVProgressHUD
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UIApplicationDelegate {
-
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let locationsModel = LocationsModel()
     let pointsDB = Database.database().reference().child("Users")
@@ -69,17 +69,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                     self.previousPoints = Int(points)
                 }
             } else {
-            print("No user data to load")
-            self.pointLabel.text = "0"
+                print("No user data to load")
+                self.pointLabel.text = "0"
             }
-    })
+        })
     }
-            
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(true)
-//        navigationController?.setNavigationBarHidden(false, animated: false)
-//    }
+    
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        super.viewWillDisappear(true)
+    //        navigationController?.setNavigationBarHidden(false, animated: false)
+    //    }
     @IBAction func checkInButton(_ sender: UIButton) {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -89,7 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         counter = 0.0
         timeLabel.text = "00:00:00"
         print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT CHECK IN BUTTON PRESS")
-
+        
     }
     @IBAction func startTimer(_ sender: Any) {
         if(isPlaying) {
@@ -192,7 +192,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         print("User Loaded Back")
         if isPlaying == true {
             print("Timer is running and now updated")
-        counter = counter + appDelegate.timeDifference
+            counter = counter + appDelegate.timeDifference
         } else if isPlaying == false && appDelegate.userLeftRegion == true {
             counter = counter + appDelegate.timeDifferenceLeftRegion
             let counterHour = counter/3600
@@ -231,7 +231,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 /* Create a region centered on desired location,
                  choose a radius for the region (in meters)
                  choose a unique identifier for that region */
-                    geofenceRegion = CLCircularRegion(
+                geofenceRegion = CLCircularRegion(
                     center: geofenceRegionCenter,
                     radius: 50,
                     identifier: "UniqueIdentifier"
@@ -266,6 +266,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             }
         }
     }
-    }
+}
 
 

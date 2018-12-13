@@ -12,7 +12,7 @@ import Firebase
 class SettingsViewController: UIViewController {
     
     let defaults = UserDefaults.standard
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

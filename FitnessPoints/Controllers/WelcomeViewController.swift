@@ -11,7 +11,7 @@ import Firebase
 
 
 class WelcomeViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +20,7 @@ class WelcomeViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "goToApp", sender: self)
         }
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

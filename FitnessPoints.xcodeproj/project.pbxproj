@@ -19,6 +19,7 @@
 		2D60072321B9EE4B00B892BB /* FitnessPointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60072221B9EE4B00B892BB /* FitnessPointsUITests.swift */; };
 		2D60073121B9EEA700B892BB /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60073021B9EEA700B892BB /* LocationsModel.swift */; };
 		2D60073321B9EEB600B892BB /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60073221B9EEB600B892BB /* DistanceCalculator.swift */; };
+		2D7EDB3D21C2F91D00A0D12F /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EDB3C21C2F91D00A0D12F /* Offer.swift */; };
 		2DBDAEB221BB097A00E64C63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DBDAEB121BB097A00E64C63 /* GoogleService-Info.plist */; };
 		2DEBA5BA21BB0EE500C9B96C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEBA5B921BB0EE500C9B96C /* WelcomeViewController.swift */; };
 		2DEBA5BC21BB11AF00C9B96C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */; };
@@ -69,6 +70,7 @@
 		2D60072421B9EE4B00B892BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D60073021B9EEA700B892BB /* LocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
 		2D60073221B9EEB600B892BB /* DistanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
+		2D7EDB3C21C2F91D00A0D12F /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		2DBDAEB121BB097A00E64C63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DEBA5B921BB0EE500C9B96C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		2DEBA5BB21BB11AF00C9B96C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		2D0B7AF321BF69E5007DA5D2 /* Data Models and Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2D7EDB3C21C2F91D00A0D12F /* Offer.swift */,
 				2D60073021B9EEA700B892BB /* LocationsModel.swift */,
 				2D60073221B9EEB600B892BB /* DistanceCalculator.swift */,
 				2DFAE60621BB312B00EB7BA4 /* Points.swift */,
@@ -459,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D7EDB3D21C2F91D00A0D12F /* Offer.swift in Sources */,
 				2D35398821C1B45500E9317E /* RedeemViewController.swift in Sources */,
 				2D60073321B9EEB600B892BB /* DistanceCalculator.swift in Sources */,
 				2DEBA5BA21BB0EE500C9B96C /* WelcomeViewController.swift in Sources */,
