@@ -62,11 +62,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         pointsDB.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 self.pointsDB.child(Auth.auth().currentUser!.uid).child("points").observe(.value) { (loadsnapshot) in
-                    let snapshotValue = loadsnapshot.value as! Int
-                    let points = snapshotValue
-                    print("PRINTED POINTS UPON LOAD: \(points)")
-                    self.pointLabel.text = ("\(points)")
-                    self.previousPoints = Int(points)
+                    if let snapshotValue = loadsnapshot.value as? Int {
+                        let points = snapshotValue
+                        print("PRINTED POINTS UPON LOAD: \(points)")
+                        self.pointLabel.text = ("\(points)")
+                        self.previousPoints = Int(points)
+                    }
                 }
             } else {
                 print("No user data to load")
@@ -161,7 +162,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         print("User has ended the workout, and the monitor for geofence has stopped")
     }
     @objc func UpdateTimer() {
-        print("PROGRESS BAR PROCESS IS \(progressBar.progress) AT UPDATETIMERSTART")
         counter = counter + 0.1
         let counterHour = counter/3600
         let counterMinute = counter/60

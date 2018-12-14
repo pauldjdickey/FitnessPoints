@@ -23,18 +23,25 @@ class RedeemViewController: UITableViewController {
     }
     
     func fetchOffers() {
-        Database.database().reference().child("Offers").observe(.childAdded) { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                let offer = Offer()
-                offer.cost = dictionary["cost"] as? Int
-                offer.title = dictionary["title"] as? String
-                self.offers.append(offer)
-                
-                self.tableView.reloadData()
+        
+        Database.database().reference().child("Offers").observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                Database.database().reference().child("Offers").observe(.childAdded) { (redeemsnapshot) in
+                    // Need to make this safe...
+                    if let dictionary = redeemsnapshot.value as? [String: AnyObject] {
+                        let offer = Offer()
+                        offer.cost = dictionary["cost"] as? Int
+                        offer.title = dictionary["title"] as? String
+                        self.offers.append(offer)
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                print("No redeemable coupons")
             }
-            
         }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +61,7 @@ class RedeemViewController: UITableViewController {
         } else {
             cell.detailTextLabel?.text = "This offer does not have a cost"
         }
+        
         
         
         return cell
@@ -82,8 +90,24 @@ class RedeemViewController: UITableViewController {
                                 if error != nil {
                                     print(error!)
                                 } else {
-                                    print("Points saved successfully!")
+                                    print("Points saved successfully and offer added to wallet!")
                                     //THIS IS WHERE WE NEED TO SAVE THE OFFER TO OUR FIREBASE WALLET
+                                    //Right now this is replacing our points value, for some reason, how do we fix that?
+                                                                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshotcheck) in
+                                                                            if snapshotcheck.exists() {
+                                                                                print("The snapshot for offers exists!")
+                                                                                //This is where we will
+                                                                            } else {
+                                                                                //This saves the title to a snapshot called offers, even if there isn't an offer there. We need to next it though and continue to add to it...
+                                                                                let currentOffer = offer.title
+                                                                                let offers2 = ["offers": currentOffer]
+                                                                                self.pointsDB.child(Auth.auth().currentUser!.uid).updateChildValues(offers2 as [AnyHashable : Any])
+                                                                                
+                                                                            }
+                                                                        })
+                                    
+                                    
+                                    
                                 }
                             }
                         } else {
@@ -106,7 +130,7 @@ class RedeemViewController: UITableViewController {
         }))
         self.present(redeemAlert, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
     }
 }
 
