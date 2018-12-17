@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userLeftRegion:Bool = false
     var userLeftApp:Bool = false
     var geofenceRegion = CLCircularRegion()
+    var appTerminated = true
+
 
 
 
@@ -139,7 +141,14 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         if region is CLCircularRegion {
             // Do what you want if this information
-            self.handleEvent(forRegion: region)
+            // This only gets set when a user exits region either with app active or in background
+            print(appTerminated)
+            //let state = UIApplication.shared.applicationState
+            if appTerminated == false {
+                self.handleEvent(forRegion: region)
+            } else {
+            
+            }
             userLeftRegion = true
             print("User has left the area and value has been set to true")
             leftRegionDateTime = Date()

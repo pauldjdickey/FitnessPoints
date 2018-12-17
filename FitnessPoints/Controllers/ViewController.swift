@@ -86,6 +86,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        appDelegate.appTerminated = false
         progressBar.setProgress(0.0, animated: false)
         counter = 0.0
         timeLabel.text = "00:00:00"
