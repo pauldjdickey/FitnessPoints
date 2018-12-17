@@ -73,6 +73,16 @@ class LocationsModel {
                     type: "Gym",distance : CLLocation(latitude:36.5851,
                                                       longitude:-121.8504).distance(from: fromLocation),
                     coordinate : CLLocationCoordinate2DMake(36.5851,-121.8504)),
+            Places( title: "Starbucks Sand City",
+                    cllocation: CLLocation(latitude:36.6223,longitude:-121.8442), regionRadius:150.0, location:"Starbucks Sand City",
+                    type: "Gym",distance : CLLocation(latitude:36.6223,
+                                                      longitude:-121.8442).distance(from: fromLocation),
+                    coordinate : CLLocationCoordinate2DMake(36.6223,-121.8442)),
+            Places( title: "MaxFit - Monterey",
+                    cllocation: CLLocation(latitude:36.5949,longitude:-121.8904), regionRadius:150.0, location:"MaxFit - Monterey",
+                    type: "Gym",distance : CLLocation(latitude:36.5949,
+                                                      longitude:-121.8904).distance(from: fromLocation),
+                    coordinate : CLLocationCoordinate2DMake(36.5949,-121.8904)),
         ]
         
         //Before sort the array

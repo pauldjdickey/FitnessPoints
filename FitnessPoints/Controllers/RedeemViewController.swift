@@ -57,9 +57,9 @@ class RedeemViewController: UITableViewController {
         let offer = offers[indexPath.row]
         cell.textLabel?.text = offer.title
         if offer.cost != nil {
-            cell.detailTextLabel?.text = ("This offer costs \(offer.cost!) points to redeem")
+            cell.detailTextLabel?.text = ("Tap to redeem for \(offer.cost!) points.")
         } else {
-            cell.detailTextLabel?.text = "This offer does not have a cost"
+            cell.detailTextLabel?.text = "Tap to redeem"
         }
         
         
@@ -93,17 +93,25 @@ class RedeemViewController: UITableViewController {
                                     print("Points saved successfully and offer added to wallet!")
                                     //THIS IS WHERE WE NEED TO SAVE THE OFFER TO OUR FIREBASE WALLET
                                     //Right now this is replacing our points value, for some reason, how do we fix that?
-                                                                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshotcheck) in
-                                                                            if snapshotcheck.exists() {
-                                                                                print("The snapshot for offers exists!")
-                                                                                //This is where we will
-                                                                            } else {
-                                                                                //This saves the title to a snapshot called offers, even if there isn't an offer there. We need to next it though and continue to add to it...
-                                                                                let currentOffer = offer.title
-                                                                                let offers2 = ["offers": currentOffer]
-                                                                                self.pointsDB.child(Auth.auth().currentUser!.uid).updateChildValues(offers2 as [AnyHashable : Any])
-                                                                            }
-                                                                        })
+                                    let currentOffer = offer.title
+                                    let offers2 = ["title": currentOffer]
+                                    Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["redeemedoffers" : offers2])
+//                                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshotcheck) in
+//                                        if snapshotcheck.exists() {
+//                                            print("The snapshot for offers exists!")
+//                                            //This is where we will create the offers tab and append the first items
+//                                        } else {
+//                                            //This saves the title to a snapshot called offers, even if there isn't an offer there. We need to next it though and continue to add to it...
+//                                            //This is where we will add childs to the offers tab, each child needs the title and date of expiration
+//                                            let currentOffer = offer.title
+//                                            let offers2 = ["title": currentOffer]
+//                                            //self.pointsDB.child(Auth.auth().currentUser!.uid).child("RedeemedOffers").child(offer.title!).updateChildValues(offers2 as [AnyHashable : Any])
+//                                            self.pointsDB.child(Auth.auth().currentUser!.uid).child("redeemedoffers").child(offer.title!).updateChildValues(offers2 as [AnyHashable : Any])
+//                                            //Database.database().reference().child("Users/\(Auth.auth().currentUser!.uid)/\()").child(offer.title!).setValue(offers2 as [AnyHashable : Any])
+//                                            //Database.database().reference().child("Users/\(Auth.auth().currentUser!.uid)/RedeemedOffers").childByAutoId().updateChildValues(offers2 as [AnyHashable : Any])
+//
+//                                        }
+//                                    })
                                     
                                     
                                     
