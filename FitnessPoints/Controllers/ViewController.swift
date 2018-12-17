@@ -41,7 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.requestAlwaysAuthorization()
+        locationManager.requestAlwaysAuthorization()
         timeLabel.text = String(counter)
         pauseButton.isEnabled = false
         startButton.isHidden = true
@@ -54,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         progressBar.isHidden = true
         NotificationCenter.default.addObserver(self, selector:#selector(upDateTimeDifference), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -84,7 +85,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
     @IBAction func checkInButton(_ sender: UIButton) {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         progressBar.setProgress(0.0, animated: false)
         counter = 0.0

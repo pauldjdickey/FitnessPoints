@@ -289,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="-5229" y="-690"/>
         </scene>
-        <!--Fitness Points Home-->
+        <!--Workout and Win-->
         <scene sceneID="LBy-rT-K3n">
             <objects>
                 <viewController id="vdS-Z5-1Ed" customClass="WelcomeViewController" customModule="FitnessPoints" customModuleProvider="target" sceneMemberID="viewController">
@@ -321,7 +321,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y6V-Kb-hDo"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Fitness Points Home" id="LM3-e5-NuD"/>
+                    <navigationItem key="navigationItem" title="Workout and Win" id="LM3-e5-NuD"/>
                     <connections>
                         <segue destination="bh1-Nq-JdA" kind="show" identifier="goToApp" animates="NO" id="5EL-7k-rtc"/>
                     </connections>
@@ -370,8 +370,8 @@
                                     <action selector="resetTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Tl-kz-FCN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Points in Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h69-Ko-KfS">
-                                <rect key="frame" x="128" y="451" width="158" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total WOW! Bucks in Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h69-Ko-KfS">
+                                <rect key="frame" x="101.66666666666669" y="451" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -403,8 +403,8 @@
                                     <constraint firstAttribute="width" constant="150" id="m0n-TL-cgO"/>
                                 </constraints>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points Earned this Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOP-JV-JMW">
-                                <rect key="frame" x="103.66666666666669" y="340" width="207" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WOW! bucks earned this Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOP-JV-JMW">
+                                <rect key="frame" x="78" y="340" width="258" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

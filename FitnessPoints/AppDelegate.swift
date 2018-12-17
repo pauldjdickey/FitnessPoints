@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notificationCenter: UNUserNotificationCenter!
     var userLeftRegion:Bool = false
     var userLeftApp:Bool = false
+    var geofenceRegion = CLCircularRegion()
 
 
 
@@ -128,6 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        // This is where we need to stop our region monitoring
+        //locationManager.stopMonitoring(for: geofenceRegion)
     }
 }
 extension AppDelegate: CLLocationManagerDelegate {
@@ -141,6 +145,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             leftRegionDateTime = Date()
             leftRegionTime = leftRegionDateTime.timeIntervalSinceReferenceDate
             print(leftRegionTime)
+            }
         }
         // This will be activated once the user has moved and left the geofence location. It will then handle the event to send a notification
     }
@@ -152,7 +157,6 @@ extension AppDelegate: CLLocationManagerDelegate {
     //            self.handleEvent(forRegion: region)
     //        }
     //    }
-}
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

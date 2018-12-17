@@ -102,7 +102,6 @@ class RedeemViewController: UITableViewController {
                                                                                 let currentOffer = offer.title
                                                                                 let offers2 = ["offers": currentOffer]
                                                                                 self.pointsDB.child(Auth.auth().currentUser!.uid).updateChildValues(offers2 as [AnyHashable : Any])
-                                                                                
                                                                             }
                                                                         })
                                     
