@@ -95,7 +95,8 @@ class RedeemViewController: UITableViewController {
                                     //Right now this is replacing our points value, for some reason, how do we fix that?
                                     let currentOffer = offer.title
                                     let offers2 = ["title": currentOffer]
-                                    Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["redeemedoffers" : offers2])
+                                    Database.database().reference().child("Redeemed").child(Auth.auth().currentUser!.uid).childByAutoId().updateChildValues(offers2 as [AnyHashable : Any])
+                                    
 //                                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshotcheck) in
 //                                        if snapshotcheck.exists() {
 //                                            print("The snapshot for offers exists!")

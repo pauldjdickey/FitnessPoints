@@ -53,6 +53,7 @@
 		24A2909C997AE6BB2BD28EA8 /* Pods-FitnessPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		260BB852C9D18503ECFA2EC9 /* Pods-FitnessPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPoints.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPoints/Pods-FitnessPoints.release.xcconfig"; sourceTree = "<group>"; };
 		279F18E9B1C56C3EB6CF1234 /* Pods-FitnessPointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessPointsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessPointsTests/Pods-FitnessPointsTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D233F4721C9931E0093CC67 /* FitnessPoints.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitnessPoints.entitlements; sourceTree = "<group>"; };
 		2D35398721C1B45500E9317E /* RedeemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemViewController.swift; sourceTree = "<group>"; };
 		2D35398921C1C55500E9317E /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		2D43AEFF21BF28E3006D81DF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +174,7 @@
 		2D60070121B9EE4A00B892BB /* FitnessPoints */ = {
 			isa = PBXGroup;
 			children = (
+				2D233F4721C9931E0093CC67 /* FitnessPoints.entitlements */,
 				2D60070221B9EE4A00B892BB /* AppDelegate.swift */,
 				2D0B7AF221BF69D5007DA5D2 /* Views */,
 				2D0B7AF121BF69C7007DA5D2 /* Controllers */,
@@ -298,7 +300,13 @@
 					2D6006FE21B9EE4A00B892BB = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 0;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -653,18 +661,19 @@
 			baseConfigurationReference = 24A2909C997AE6BB2BD28EA8 /* Pods-FitnessPoints.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitnessPoints/FitnessPoints.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HZJ7C93M83;
+				DEVELOPMENT_TEAM = S6TAY9VTDK;
 				INFOPLIST_FILE = FitnessPoints/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pauldickey.FitnessPoints2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pauldickey.FitnessPoints;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -673,18 +682,19 @@
 			baseConfigurationReference = 260BB852C9D18503ECFA2EC9 /* Pods-FitnessPoints.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitnessPoints/FitnessPoints.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HZJ7C93M83;
+				DEVELOPMENT_TEAM = S6TAY9VTDK;
 				INFOPLIST_FILE = FitnessPoints/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pauldickey.FitnessPoints2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pauldickey.FitnessPoints;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

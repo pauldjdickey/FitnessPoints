@@ -10,46 +10,58 @@ import Firebase
 
 class WalletViewController: UITableViewController {
     
-    var walletOffers = [Wallet]()
-    //
+    var offers = [Offer]()
+    let pointsDB = Database.database().reference().child("Users")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchWalletOffers()
+        fetchOffers()
     }
     //
-    func fetchWalletOffers() {
-        //This is working
-        Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshot) in
+    func fetchOffers() {
+        
+        Database.database().reference().child("Redeemed").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists() {
-                // this is not working
-                Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("offers").observe(.childAdded, with: { (walletsnapshot) in
-                    // I need to create each MAXFIT offer in my user DB as a snapshot, then see the details from each snapshot to populate the cells!
-                    if let dictionary = walletsnapshot.value as? [String: AnyObject] {
-                        let wallet = Wallet()
-                        wallet.title = dictionary["title"] as? String
-                        self.walletOffers.append(wallet)
+                Database.database().reference().child("Redeemed").child(Auth.auth().currentUser!.uid).observe(.childAdded) { (redeemsnapshot) in
+                    // Need to make this safe...
+                    if let dictionary = redeemsnapshot.value as? [String: AnyObject] {
+                        let offer = Offer()
+                        //offer.cost = dictionary["cost"] as? Int
+                        offer.title = dictionary["title"] as? String
+                        self.offers.append(offer)
                         self.tableView.reloadData()
                     }
-                })
+                }
             } else {
-                print("No wallet data to load")
+                print("No redeemable coupons")
             }
-        })
+        }
+        
+        
     }
-    //
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("The amount of offers is \(walletOffers.count)")
-        return walletOffers.count
+        
+        return offers.count
+        
     }
-    //
+    
+    //This is what will go into the cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletCell", for: indexPath)
         
-        let walletOffer = walletOffers[indexPath.row]
-        cell.textLabel?.text = walletOffer.title
+        let offer = offers[indexPath.row]
+        cell.textLabel?.text = offer.title
+        if offer.cost != nil {
+            cell.detailTextLabel?.text = ("Tap to redeem for \(offer.cost!) points.")
+        } else {
+            cell.detailTextLabel?.text = "Tap to redeem"
+        }
+        
+        
+        
         return cell
-    
-}
+    }
 
 
 }
