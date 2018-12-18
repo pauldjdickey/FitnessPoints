@@ -61,9 +61,6 @@ class RedeemViewController: UITableViewController {
         } else {
             cell.detailTextLabel?.text = "Tap to redeem"
         }
-        
-        
-        
         return cell
     }
     
@@ -94,8 +91,11 @@ class RedeemViewController: UITableViewController {
                                     //THIS IS WHERE WE NEED TO SAVE THE OFFER TO OUR FIREBASE WALLET
                                     //Right now this is replacing our points value, for some reason, how do we fix that?
                                     let currentOffer = offer.title
-                                    let offers2 = ["title": currentOffer]
-                                    Database.database().reference().child("Redeemed").child(Auth.auth().currentUser!.uid).childByAutoId().updateChildValues(offers2 as [AnyHashable : Any])
+                                    let autoIDRef = Database.database().reference().child("Redeemed").child(Auth.auth().currentUser!.uid).childByAutoId()
+                                    let autoIDRefString = autoIDRef.key
+                                    let offers2 = ["title": currentOffer, "uuid": autoIDRefString]
+                                    
+                                    autoIDRef.updateChildValues(offers2 as [AnyHashable : Any])
                                     
 //                                    self.pointsDB.child(Auth.auth().currentUser!.uid).child("offers").observeSingleEvent(of: .value, with: { (snapshotcheck) in
 //                                        if snapshotcheck.exists() {
