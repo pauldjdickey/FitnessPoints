@@ -220,8 +220,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             //let check = locationsModel.canWeWorkout(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let check = locationsModel.canWeWorkout(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             //This checks our current location and then calls the canWeWorkout function in locations model to see if we are within 50 meters
-            let savedLatitude = location.coordinate.latitude
-            let savedLongitude = location.coordinate.longitude
+//            let savedLatitude = location.coordinate.latitude
+//            let savedLongitude = location.coordinate.longitude
             print(check)
             
             if check == true {
@@ -238,7 +238,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                  choose a unique identifier for that region */
                 geofenceRegion = CLCircularRegion(
                     center: geofenceRegionCenter,
-                    radius: locationsModel.geoFenceRadius,
+                    radius: locationsModel.geoFenceRadius * 1.10,
                     identifier: "UniqueIdentifier"
                 )
                 // This creates the parameters for our geolocation w/ an identifier (We can add 20 geofences)
@@ -246,7 +246,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 geofenceRegion.notifyOnExit = true
                 // This will only notify us or do something when we have left
                 self.locationManager.startMonitoring(for: geofenceRegion)
-                print("Monitoring for geolocation with center \(locationsModel.geoFenceLatitude) \(locationsModel.geoFenceLongitude) and radius \(locationsModel.geoFenceRadius) has started")
+                print("Monitoring for geolocation with center \(locationsModel.geoFenceLatitude) \(locationsModel.geoFenceLongitude) and radius \(locationsModel.geoFenceRadius * 1.10) has started")
                 print("Lets do it!")
                 startButton.isHidden = false
                 pauseButton.isHidden = false
