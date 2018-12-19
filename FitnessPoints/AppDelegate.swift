@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         content.sound = UNNotificationSound.default
         
         // when the notification will be triggered
-        let timeInSeconds: TimeInterval = 3
+        let timeInSeconds: TimeInterval = 1
         // the actual trigger object
         let trigger = UNTimeIntervalNotificationTrigger(
             timeInterval: timeInSeconds,
