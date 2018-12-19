@@ -27,7 +27,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Nd-zBo">
                                 <rect key="frame" x="192" y="527" width="30" height="30"/>
                                 <state key="normal" title="...">
-                                    <color key="titleColor" red="1" green="0.1695918474" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="zH0-bZ-Reh" kind="show" identifier="goToRedeem" id="RUb-sQ-ukY"/>
