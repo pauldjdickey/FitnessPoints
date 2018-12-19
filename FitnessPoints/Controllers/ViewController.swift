@@ -238,7 +238,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                  choose a unique identifier for that region */
                 geofenceRegion = CLCircularRegion(
                     center: geofenceRegionCenter,
-                    radius: 50,
+                    radius: locationsModel.geoFenceRadius,
                     identifier: "UniqueIdentifier"
                 )
                 // This creates the parameters for our geolocation w/ an identifier (We can add 20 geofences)
@@ -246,7 +246,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 geofenceRegion.notifyOnExit = true
                 // This will only notify us or do something when we have left
                 self.locationManager.startMonitoring(for: geofenceRegion)
-                print("Monitoring for geolocation with center \(locationsModel.geoFenceLatitude) \(locationsModel.geoFenceLongitude) has started")
+                print("Monitoring for geolocation with center \(locationsModel.geoFenceLatitude) \(locationsModel.geoFenceLongitude) and radius \(locationsModel.geoFenceRadius) has started")
                 print("Lets do it!")
                 startButton.isHidden = false
                 pauseButton.isHidden = false
