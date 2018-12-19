@@ -29,7 +29,6 @@ class WalletViewController: UITableViewController {
                         offer.title = dictionary["title"] as? String
                         self.offers.append(offer)
                         self.tableView.reloadData()
-                        print(offer.uuid)
                     }
                 }
             } else {
@@ -49,11 +48,8 @@ class WalletViewController: UITableViewController {
         
         let offer = offers[indexPath.row]
         cell.textLabel?.text = offer.title
-        if offer.cost != nil {
-            cell.detailTextLabel?.text = ("Tap to redeem for \(offer.cost!) points.")
-        } else {
-            cell.detailTextLabel?.text = "Tap to redeem"
-        }
+        cell.detailTextLabel?.text = "Tap to use offer"
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

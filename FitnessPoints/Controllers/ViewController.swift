@@ -15,6 +15,7 @@ import SVProgressHUD
 class ViewController: UIViewController, CLLocationManagerDelegate, UIApplicationDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let geoLocationFile = LocationsModel()
     let locationsModel = LocationsModel()
     let pointsDB = Database.database().reference().child("Users")
     let offersDB = Database.database().reference().child("Offers")
@@ -166,14 +167,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
         counter = counter + 0.1
         let counterHour = counter/3600
         let counterMinute = counter/60
+        let counterMinuteTruncate = counterMinute.truncatingRemainder(dividingBy: 60)
         let counterSecond = counter.truncatingRemainder(dividingBy: 60)
         
-        timeLabel.text = ("\(String(format: "%02d", Int(counterHour))):\(String(format: "%02d", Int(counterMinute))):\(String(format: "%02d", Int(counterSecond)))")
+        timeLabel.text = ("\(String(format: "%02d", Int(counterHour))):\(String(format: "%02d", Int(counterMinuteTruncate))):\(String(format: "%02d", Int(counterSecond)))")
         currentWorkoutPointLabel.text = ("\(Int(counter/60))")
         formatter.minimumFractionDigits = 2
         formatter.maximumIntegerDigits = 0
         let progressBarFormatted = formatter.string(from: NSNumber(value: counterMinute))!
-        print(progressBarFormatted)
+        //print(progressBarFormatted)
         if progressBar.progress == 1.0 {
             progressBar.progress = 0.0
         } else {
@@ -217,16 +219,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
             
             //let check = locationsModel.canWeWorkout(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let check = locationsModel.canWeWorkout(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            //This checks our current location and then calls the canWeWorkout function in locations model to see if we are within 50 meters
             let savedLatitude = location.coordinate.latitude
             let savedLongitude = location.coordinate.longitude
-            //Use this one when testing on computer.
             print(check)
             
             if check == true {
                 let geofenceRegionCenter = CLLocationCoordinate2D(
-                    latitude: savedLatitude,
-                    longitude: savedLongitude
-                    // This sets up our geofence and will not change until workout is complete.
+                    latitude: locationsModel.geoFenceLatitude,
+                    longitude: locationsModel.geoFenceLongitude
+//                    latitude: geoLocationFile.geoFenceLatitude,
+//                    longitude: geoLocationFile.geoFenceLongitude
+                    //This setups our geofence with a center point of where we are standing
                     // If we are ready to start a workout, it creates a geofence based on the current location (Have to put location.coordinate.latitude/longitude in)
                 )
                 /* Create a region centered on desired location,
@@ -242,7 +246,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIApplication
                 geofenceRegion.notifyOnExit = true
                 // This will only notify us or do something when we have left
                 self.locationManager.startMonitoring(for: geofenceRegion)
-                print("Monitoring for geolocation with center \(location.coordinate.latitude) \(location.coordinate.longitude) has started")
+                print("Monitoring for geolocation with center \(locationsModel.geoFenceLatitude) \(locationsModel.geoFenceLongitude) has started")
                 print("Lets do it!")
                 startButton.isHidden = false
                 pauseButton.isHidden = false

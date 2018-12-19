@@ -11,6 +11,10 @@ import CoreLocation
 
 class LocationsModel {
     
+        var geoFenceLatitude = 0.0
+        var geoFenceLongitude = 0.0
+    
+
     func canWeWorkout(latitude: Double, longitude: Double) -> Bool {
         
         let fromLocation:CLLocation = CLLocation(latitude: latitude, longitude: longitude)
@@ -99,7 +103,13 @@ class LocationsModel {
             print("Distance too far \(places[k].distance!)")
         } else {
             print("Distance close enough \(places[k].distance!)")
+            print("Location of workout is: \(places[k].title!)")
+            print("Latitude of location is: \(places[k].cllocation.coordinate.latitude)")
+            print("Longitude of location is: \(places[k].cllocation.coordinate.longitude)")
+            geoFenceLatitude = places[k].cllocation.coordinate.latitude
+            geoFenceLongitude = places[k].cllocation.coordinate.longitude
             return true
+            //This ONLY prints the one that a user is closest to for working out
         }
         }
         return false
